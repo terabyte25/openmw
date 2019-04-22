@@ -126,8 +126,11 @@ public:
             osg::Texture2D* texture = batch.mTexture;
             if(texture)
                 state->applyTextureAttribute(0, texture);
-
-            osg::GLBufferObject* bufferobject = state->isVertexBufferObjectSupported() ? vbo->getOrCreateGLBufferObject(state->getContextID()) : 0;
+#if defined (ANDROID)
+            osg::GLBufferObject* bufferobject = nullptr;
+#else
+            osg::GLBufferObject* bufferobject = state->isVertexBufferObjectSupported() ? vbo->getOrCreateGLBufferObject(state->getContextID()) : 0; // This may cause GLES to crash on some devices.
+#endif
             if (bufferobject)
             {
                 state->bindVertexBufferObject(bufferobject);
