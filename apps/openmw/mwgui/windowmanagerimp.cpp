@@ -1678,7 +1678,7 @@ namespace MWGui
 
     bool WindowManager::getCursorVisible()
     {
-        return mCursorVisible && mCursorActive;
+        return mCursorActive;
     }
 
     void WindowManager::trackWindow(Layout *layout, const std::string &name)
