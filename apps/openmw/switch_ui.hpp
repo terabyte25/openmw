@@ -5,11 +5,11 @@
 #include <pu/Plutonium>
 
 // Define your main layout as a class inheriting from pu::Layout
-class Layout1 : public pu::Layout
+class LayoutSettings : public pu::Layout
 {
     public:
-        Layout1();
-        ~Layout1();
+        LayoutSettings();
+        ~LayoutSettings();
     private:
         // An easy way to keep objects is to have them as private pointer members
         pu::element::Menu *settingsMenu;
@@ -22,7 +22,7 @@ class MainApplication : public pu::Application
         MainApplication();
     private:
         // Layout instance
-        Layout1 *layout1;
+        LayoutSettings *layout1;
 };
 
 int openmw_main(int argc, char**argv);
