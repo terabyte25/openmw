@@ -83,7 +83,7 @@ namespace MWGui
         , mReviewDialog(0)
         , mGenerateClassStep(0)
 #ifdef __SWITCH__
-        , mPlayerName(Switch::getUsername())
+        , mPlayerName((Switch::getUsername() == "global" ? "" : Switch::getUsername()))
 #endif
     {
         mCreationStage = CSE_NotStarted;
