@@ -98,6 +98,7 @@ void showProfileSelector() {
     
     appletHolderClose(&aph);
     
+    readUsername(); // refresh username
 }
 
 void fatal(const char *fmt, ...)
