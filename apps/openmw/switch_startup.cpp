@@ -80,6 +80,25 @@ void readUsername()
 
     accountExit();
 }
+    
+void showProfileSelector() {
+    AppletHolder aph;
+    LibAppletArgs args;
+    
+    auto rc = appletCreateLibraryApplet(&aph, AppletId_playerSelect, LibAppletMode_AllForeground);
+    
+    if (R_FAILED(rc)) 
+        return;
+    
+    libappletArgsCreate(&args, 0);
+    libappletArgsPush(&args, &aph);
+    
+    appletHolderStart(&aph);
+    appletHolderJoin(&aph);
+    
+    appletHolderClose(&aph);
+    
+}
 
 void fatal(const char *fmt, ...)
 {

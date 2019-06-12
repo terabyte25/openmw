@@ -9,6 +9,7 @@ namespace Switch
     void shutdown();
     void importIni(Files::ConfigurationManager& cfgMgr);
     std::string getUsername();
+    void showProfileSelector();
     void fatal(const char *fmt, ...);
 }
 

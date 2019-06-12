@@ -17,6 +17,10 @@
 #include <components/esm/esmreader.hpp>
 #include <components/esm/controlsstate.hpp>
 
+#ifdef __SWITCH__
+#include "../switch_startup.hpp"
+#endif
+
 #include "../mwbase/world.hpp"
 #include "../mwbase/windowmanager.hpp"
 #include "../mwbase/statemanager.hpp"
@@ -259,7 +263,16 @@ namespace MWInput
                     MWBase::Environment::get().getWindowManager()->exitCurrentGuiMode();
                 return true;
             case SDL_CONTROLLER_BUTTON_X:
-                key = MyGUI::KeyCode::Tab;
+#ifdef __SWITCH__
+                bool isMainMenu =
+                MWBase::Environment::get().getWindowManager()->containsMode(MWGui::GM_MainMenu) &&
+                MWBase::Environment::get().getStateManager()->getState() == MWBase::StateManager::State_NoGame;
+
+                if (isMainMenu)
+                    Switch::showProfileSelector();
+                else 
+#endif
+                    key = MyGUI::KeyCode::Tab;
                 break;
             case SDL_CONTROLLER_BUTTON_Y:
                 key = MyGUI::KeyCode::Apostrophe;
