@@ -33,6 +33,8 @@ namespace Switch
 
 std::string username = "global";
 
+Files::ConfigurationManager& globalConfigManager;
+
 void readUsername()
 {
     // get the name of the current user
@@ -80,6 +82,10 @@ void readUsername()
 
     accountExit();
 }
+
+void refreshDirectories() {
+    globalConfigManager.refresh();
+}
     
 void showProfileSelector() {
     AppletHolder aph;
@@ -98,7 +104,8 @@ void showProfileSelector() {
     
     appletHolderClose(&aph);
     
-    readUsername(); // refresh username
+    readUsername();
+    refreshDirectories(); // refresh username
 }
 
 void fatal(const char *fmt, ...)
@@ -121,6 +128,8 @@ void fatal(const char *fmt, ...)
 
 void importIni(Files::ConfigurationManager& cfgMgr)
 {
+    globalConfigManager = cfgMgr;
+
     // if the cfg already exists, we don't need to perform conversion
     auto cfgPath = cfgMgr.getUserConfigPath() / "openmw.cfg";
     if (boost::filesystem::exists(cfgPath))

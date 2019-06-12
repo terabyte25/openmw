@@ -26,6 +26,8 @@ struct ConfigurationManager
         boost::program_options::options_description& description, bool quiet=false);
 
     void processPaths(Files::PathContainer& dataDirs, bool create = false);
+
+    void refresh();
     ///< \param create Try creating the directory, if it does not exist.
 
     /**< Fixed paths */

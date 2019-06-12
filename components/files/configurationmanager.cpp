@@ -122,6 +122,10 @@ void ConfigurationManager::processPaths(Files::PathContainer& dataDirs, bool cre
         std::bind(&boost::filesystem::path::empty, std::placeholders::_1)), dataDirs.end());
 }
 
+void ConfigurationManager::refresh() {
+    mFixedPath.refresh();
+}
+
 bool ConfigurationManager::loadConfig(const boost::filesystem::path& path,
     boost::program_options::variables_map& variables,
     boost::program_options::options_description& description)

@@ -66,6 +66,16 @@ struct FixedPath
     {
     }
 
+    void refresh() {
+        mUserConfigPath = mPath.getUserConfigPath();
+        mUserDataPath = mPath.getUserDataPath();
+        mGlobalConfigPath = mPath.getGlobalConfigPath();
+        mLocalPath = mPath.getLocalPath();
+        mGlobalDataPath = mPath.getGlobalDataPath();
+        mCachePath = mPath.getCachePath();
+        mInstallPath = mPath.getInstallPath();
+    }
+
     /**
      * \brief Return path pointing to the user local configuration directory.
      */
